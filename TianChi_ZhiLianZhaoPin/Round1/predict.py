@@ -2,7 +2,6 @@ import pandas as pd
 import joblib as jl
 from functools import partial
 import difflib
-import numpy as np
 
 
 def string_similar(s,s1, s2):
@@ -19,7 +18,8 @@ def pred(s='-,-其他化妆师400106000房地产/建筑/建材/工程后期制�
     allUser['ratio']=allUser.apply(partial(string_similar, s1='tem123', s2=s), axis=1).sort_values()
     similar_user=allUser.sort_values('ratio', ascending=False)[['user_id', 'ratio']].reset_index()
     # print df.apply(partial(apply_sm, c1='A', c2='B'), axis=1)
-    clf=jl.load('D:\\WorkFile\\TianChi_ZhiLianZhaoPin\\model\\satisfied.pkl')
+    dev=jl.load('D:\\WorkFile\\TianChi_ZhiLianZhaoPin\\model\\delivered.pkl')
+    sat = jl.load('D:\\WorkFile\\TianChi_ZhiLianZhaoPin\\model\\satisfied.pkl')
     all_data = pd.read_csv('D:\\WorkFile\\TianChi_ZhiLianZhaoPin\\Round1\\alldata.csv')
     test_user = all_data[all_data['user_id']==similar_user.loc[0,'user_id']]
     # test_user = pd.DataFrame({'user_id':similar_user.loc[similar_user[0],'user_id'],'live_city_id':live_city_id,'desire_jd_city_id':desire_jd_city_id,
@@ -43,20 +43,22 @@ def pred(s='-,-其他化妆师400106000房地产/建筑/建材/工程后期制�
     # test_action['jd_nunique'] = test_action.groupby(['user_id'])['jd_no'].transform('nunique').values
     # test_action = test_action.drop_duplicates()
     #
+    # test_user['browsed'] = -1
     # test_user['delivered'] = -1
-    # test_user['satisfied'] = -1
     #
     # test = test_action.merge(test_user, on='user_id', how='left')
     # test = test.merge(train_jd, on='jd_no', how='left')
 
     print('test data base feats already generated ...')
 
-    use_feats = [c for c in test_user.columns if c not in ['user_id', 'jd_no', 'delivered', 'satisfied'] +
+    use_feats = [c for c in test_user.columns if c not in ['user_id', 'jd_no', 'browsed', 'delivered'] +
                  ['desire_jd_industry_id', 'desire_jd_type_id', 'cur_industry_id', 'cur_jd_type', 'experience',
                   'jd_title', 'jd_sub_type', 'job_description\n']]
-    test_user['satisfied'] = clf.predict(test_user[use_feats], num_iteration=clf.best_iteration)
-    print(clf.best_score['valid_0']['auc'])
-    return test_user.sort_values('satisfied', ascending=False)[['jd_title','city','jd_sub_type','require_nums','max_salary','min_salary','is_travel','min_work_year','max_work_year','user_work_year','min_edu_level_num','satisfied']].reset_index()
+    test_user['delivered']=dev.predict(test_user[use_feats], num_iteration=dev.best_iteration)
+    test_user['satisfied'] = sat.predict(test_user[use_feats], num_iteration=dev.best_iteration)
+    test_user['merge_prob'] = test_user['satisfied'] * 0.8 + test_user['delivered'] * 0.2
+    print(dev.best_score['valid_0']['auc'])
+    return test_user.sort_values('merge_prob', ascending=False)[['jd_title','city','jd_sub_type','require_nums','max_salary','min_salary','is_travel','min_work_year','max_work_year','user_work_year','min_edu_level_num','merge_prob']].reset_index()
 
 if __name__ == "__main__":
     print('program test beginning')
