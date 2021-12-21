@@ -4,5 +4,5 @@
 # 系统设计
 ## web界面参照ppt实现，首页输入信息参考round1_train/table1_user.csv，具体描述见https://tianchi.aliyun.com/competition/entrance/231728/information
 ## 模型输出格式见Round1/sub_base.csv,页面展示岗位具体信息
-## 模型保存在model文件夹，具体调用见Round1/test.py
+## 模型保存在model文件夹，具体调用见Round1/predict.py
 
