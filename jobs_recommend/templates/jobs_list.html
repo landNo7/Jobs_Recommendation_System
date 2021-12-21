@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <td>jobid</td>
+        <td>job_href</td>
+        <td>job_name</td>
+        <td>company_href</td>
+        <td>company_name</td>
+        <td>providesalary</td>
+        <td>workarea</td>
+        <td>company_type</td>
+        <td>jobwelf</td>
+        <td>experience</td>
+        <td>education</td>
+        <td>number</td>
+        <td>companysize</td>
+        <td>companyind</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for jobs in jobs_queryset %}
+        <tr>
+            <td>{{ jobs.jobid }}</td>
+            <td>{{ jobs.job_href }}</td>
+            <td>{{ jobs.job_name }}</td>
+            <td>{{ jobs.company_href }}</td>
+            <td>{{ jobs.company_name }}</td>
+            <td>{{ jobs.providesalary }}</td>
+            <td>{{ jobs.workarea }}</td>
+            <td>{{ jobs.company_type }}</td>
+            <td>{{ jobs.jobwelf }}</td>
+            <td>{{ jobs.experience }}</td>
+            <td>{{ jobs.education }}</td>
+            <td>{{ jobs.number }}</td>
+            <td>{{ jobs.companysize }}</td>
+            <td>{{ jobs.companyind }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+</body>
+</html>
