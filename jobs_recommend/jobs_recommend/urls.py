@@ -19,5 +19,6 @@ from jobs import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('jobs_list', views.jobs_list),
+    path('jobs_list/', views.jobs_list),
+    path('predict/', views.predict),
 ]

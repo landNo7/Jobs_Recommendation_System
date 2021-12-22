@@ -18,9 +18,9 @@ def pred(s='-,-其他化妆师400106000房地产/建筑/建材/工程后期制�
     allUser['ratio']=allUser.apply(partial(string_similar, s1='tem123', s2=s), axis=1).sort_values()
     similar_user=allUser.sort_values('ratio', ascending=False)[['user_id', 'ratio']].reset_index()
     # print df.apply(partial(apply_sm, c1='A', c2='B'), axis=1)
-    dev=jl.load('D:\\WorkFile\\TianChi_ZhiLianZhaoPin\\model\\delivered.pkl')
-    sat = jl.load('D:\\WorkFile\\TianChi_ZhiLianZhaoPin\\model\\satisfied.pkl')
-    all_data = pd.read_csv('D:\\WorkFile\\TianChi_ZhiLianZhaoPin\\Round1\\alldata.csv')
+    dev=jl.load('TianChi_ZhiLianZhaoPin\\model\\delivered.pkl')
+    sat = jl.load('TianChi_ZhiLianZhaoPin\\model\\satisfied.pkl')
+    all_data = pd.read_csv('TianChi_ZhiLianZhaoPin\\Round1\\alldata.csv')
     test_user = all_data[all_data['user_id']==similar_user.loc[0,'user_id']]
     # test_user = pd.DataFrame({'user_id':similar_user.loc[similar_user[0],'user_id'],'live_city_id':live_city_id,'desire_jd_city_id':desire_jd_city_id,
     #                           'desire_jd_industry_id':desire_jd_industry_id,'desire_jd_type_id':desire_jd_type_id,'desire_jd_salary_id':desire_jd_salary_id,
