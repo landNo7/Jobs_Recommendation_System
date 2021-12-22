@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <thead>
+    <tr>
+        <td>jd_title</td>
+        <td>city</td>
+        <td>jd_sub_type</td>
+        <td>require_nums</td>
+        <td>max_salary</td>
+        <td>min_salary</td>
+        <td>is_travel</td>
+        <td>min_work_year</td>
+        <td>max_work_year</td>
+        <td>min_edu_level_num</td>
+        <td>merge_prob</td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for jobs in ret_meg %}
+        <tr>
+            <td>{{ jobs.jd_title }}</td>
+            <td>{{ jobs.city }}</td>
+            <td>{{ jobs.job_name }}</td>
+            <td>{{ jobs.jd_sub_type }}</td>
+            <td>{{ jobs.require_nums }}</td>
+            <td>{{ jobs.max_salary }}</td>
+            <td>{{ jobs.min_salary }}</td>
+            <td>{{ jobs.is_travel }}</td>
+            <td>{{ jobs.min_work_year }}</td>
+            <td>{{ jobs.max_work_year }}</td>
+            <td>{{ jobs.min_edu_level_num }}</td>
+            <td>{{ jobs.merge_prob }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+</body>
+</html>

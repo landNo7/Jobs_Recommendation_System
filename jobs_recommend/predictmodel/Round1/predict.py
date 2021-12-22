@@ -10,7 +10,7 @@ def string_similar(s,s1, s2):
 # def pred(live_city_id,desire_jd_city_id,desire_jd_industry_id,desire_jd_type_id,desire_jd_salary_id,cur_industry_id,
 #          cur_jd_type,cur_salary_id,cur_degree_id,birthday,start_work_date,experience):
 def pred(s='-,-其他化妆师400106000房地产/建筑/建材/工程后期制作0500107000本科242015调色员|彩妆|护肤'):
-    allUser = pd.read_csv('D:\\WorkFile\\TianChi_ZhiLianZhaoPin\\round1_train\\table1_user.csv')
+    allUser = pd.read_csv('..\\round1_train\\table1_user.csv')
     allUser = allUser.astype(str)
     allUser['tem123'] = [''.join(i) for i in allUser.values]
     # s2=live_city_id+desire_jd_city_id+desire_jd_industry_id+desire_jd_type_id+desire_jd_salary_id+cur_industry_id+cur_jd_type+cur_salary_id+cur_degree_id+birthday+start_work_date+experience
@@ -20,7 +20,7 @@ def pred(s='-,-其他化妆师400106000房地产/建筑/建材/工程后期制�
     # print df.apply(partial(apply_sm, c1='A', c2='B'), axis=1)
     dev=jl.load('TianChi_ZhiLianZhaoPin\\model\\delivered.pkl')
     sat = jl.load('TianChi_ZhiLianZhaoPin\\model\\satisfied.pkl')
-    all_data = pd.read_csv('TianChi_ZhiLianZhaoPin\\Round1\\alldata.csv')
+    all_data = pd.read_csv('..\\Round1\\alldata.csv')
     test_user = all_data[all_data['user_id']==similar_user.loc[0,'user_id']]
     # test_user = pd.DataFrame({'user_id':similar_user.loc[similar_user[0],'user_id'],'live_city_id':live_city_id,'desire_jd_city_id':desire_jd_city_id,
     #                           'desire_jd_industry_id':desire_jd_industry_id,'desire_jd_type_id':desire_jd_type_id,'desire_jd_salary_id':desire_jd_salary_id,
