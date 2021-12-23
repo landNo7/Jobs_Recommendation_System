@@ -6,7 +6,8 @@ from predictmodel.views import pred
 
 def jobs_list(request):
 	jobs_queryset = models.JobsData.objects.all()
-	return render(request,"jobs_list.html",{"jobs_queryset":jobs_queryset})
+	count = models.mysql_search_count(models.JobsData)
+	return render(request,"jobs_list.html",{"jobs_queryset":jobs_queryset,"count":count})
 
 def predict(request):
 	ret_msg = {}

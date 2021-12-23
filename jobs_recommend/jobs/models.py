@@ -77,3 +77,10 @@ class Table3Action(models.Model):
     class Meta:
         managed = False
         db_table = 'table3_action'
+
+
+def mysql_search_by_jobid(database, keystring):
+	return database.objects.filter(jobid=keystring)
+
+def mysql_search_count(database):
+	return database.objects.count()
