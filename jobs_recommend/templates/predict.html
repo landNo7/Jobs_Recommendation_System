@@ -10,6 +10,7 @@
     <tr>
         <td>jd_title</td>
         <td>city</td>
+        <td>jd_name</td>
         <td>jd_sub_type</td>
         <td>require_nums</td>
         <td>max_salary</td>
@@ -22,20 +23,20 @@
     </tr>
     </thead>
     <tbody>
-    {% for jobs in ret_meg %}
+    {% for j in jobs %}
         <tr>
-            <td>{{ jobs.jd_title }}</td>
-            <td>{{ jobs.city }}</td>
-            <td>{{ jobs.job_name }}</td>
-            <td>{{ jobs.jd_sub_type }}</td>
-            <td>{{ jobs.require_nums }}</td>
-            <td>{{ jobs.max_salary }}</td>
-            <td>{{ jobs.min_salary }}</td>
-            <td>{{ jobs.is_travel }}</td>
-            <td>{{ jobs.min_work_year }}</td>
-            <td>{{ jobs.max_work_year }}</td>
-            <td>{{ jobs.min_edu_level_num }}</td>
-            <td>{{ jobs.merge_prob }}</td>
+            <td>{{ j.jd_title }}</td>
+            <td>{{ j.city }}</td>
+            <td>{{ j.job_name }}</td>
+            <td>{{ j.jd_sub_type }}</td>
+            <td>{{ j.require_nums }}</td>
+            <td>{{ j.max_salary }}</td>
+            <td>{{ j.min_salary }}</td>
+            <td>{{ j.is_travel }}</td>
+            <td>{{ j.min_work_year }}</td>
+            <td>{{ j.max_work_year }}</td>
+            <td>{{ j.min_edu_level_num }}</td>
+            <td>{{ j.merge_prob }}</td>
         </tr>
     {% endfor %}
 

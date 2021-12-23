@@ -18,7 +18,11 @@ def predict(request):
 	# 	ret_msg['jobs'] = jobs
 	# 	ret_msg['issucceed'] = 1
 	jobs = pred()
-	ret_msg['jobs'] = jobs
+	jobs = jobs.fillna(' ')
+	job_list = []
+	for i in jobs.T.to_dict().values():
+	    job_list.append(i)
 	ret_msg['issucceed'] = 1
-	return render(request,"predict.html",{"ret_msg":jobs})
+	ret_msg['jobs'] = job_list
+	return render(request,"predict.html",ret_msg)
 
